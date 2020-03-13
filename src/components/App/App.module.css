@@ -1,0 +1,60 @@
+body {
+    background: linear-gradient(
+      -90deg,
+      rgb(255, 1, 1),
+      rgb(155, 155, 107),
+      rgb(6, 248, 67)
+    );
+    padding: 1rem;
+  }
+
+  .gameWrapper {
+    display: flex;
+}
+
+  @media screen and (max-width: 1150px) {
+    html {
+      font-size: 13px;
+    }
+  }
+  
+  @media screen and (max-width: 940px) {
+    html {
+      font-size: 11px;
+    }
+  }
+  @media screen and (max-width: 640px) {
+    html {
+      font-size: 7px;
+    }
+  }
+  
+  @media screen and (max-width: 410px) {
+    html {
+      font-size: 5.5px;
+    }
+  }
+  
+  @media screen and (min-width: 1800px) {
+    html {
+      font-size: 20px;
+    }
+  }
+  
+  @media screen and (min-width: 2100px) {
+    html {
+      font-size: 25px;
+    }
+  }
+  
+  @media screen and (min-width: 2800px) {
+    html {
+      font-size: 28px;
+    }
+  }
+  
+  @media screen and (min-width: 3200px) {
+    html {
+      font-size: 32px;
+    }
+  }

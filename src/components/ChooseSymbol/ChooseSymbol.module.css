@@ -1,0 +1,16 @@
+.chooseSymbol {
+    padding-left: 20%;
+    font-size: 1rem;
+}
+
+.xButton {
+    padding: 0.5rem 1rem;
+    background-color: blue;
+    border-radius: 20px;
+}
+
+.oButton {
+    padding: 0.5rem 1rem;
+    background-color:red;
+    border-radius: 20px;
+}
