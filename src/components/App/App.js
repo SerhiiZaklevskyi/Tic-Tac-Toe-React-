@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./App.module.css";
-import Header from "../Header/Header";
-import Score from "../Score/Score";
-import GameField from "../GameField/GameField";
+import Header from "../../containers/Header/Header";
+import Score from "../../containers/Score/Score";
+import GameField from "../../containers/GameField/GameField";
 
 function App() {
   return (

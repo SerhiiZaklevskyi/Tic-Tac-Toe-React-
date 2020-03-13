@@ -2,14 +2,14 @@ import React from "react";
 import styles from "./GameField.module.css";
 import Cell from "./Cell/Cell";
 import { connect } from "react-redux";
-import { getCells } from "../../actions/fieldAction";
+import { getCells } from "../../actions-reducers/field/fieldAction";
 import combinations from "../../utils/combinations";
 import { store } from "../../store/configureStore";
 import {
   changeCounterOne,
   changeCounterTwo
-} from "../../actions/counterAction";
-import { showWinner, resetGame } from "../../actions/fieldAction";
+} from "../../actions-reducers/counter/counterAction";
+import { showWinner, resetGame } from "../../actions-reducers/field/fieldAction";
 
 class GameField extends React.Component {
   constructor(props) {

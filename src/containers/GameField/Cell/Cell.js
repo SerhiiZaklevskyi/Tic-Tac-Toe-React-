@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Cell.module.css";
 import { connect } from "react-redux";
-import { switchTurn } from "../../../actions/fieldAction";
+import { switchTurn } from "../../../actions-reducers/field/fieldAction";
 
 class Cell extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class Cell extends React.Component {
   handleClick(event) {
     this.setItem("firstPlayerX", this.props.firstPlayerX);
     if (event.target.innerText === "") {
-      this.props.firstPlayerMove
+      this.props.firstPlayerMove 
         ? this.props.switchTurn("X", this.props.id)
         : this.props.switchTurn("O", this.props.id);
       this.setItem("firstPlayerMove", !this.props.firstPlayerMove);
@@ -36,7 +36,7 @@ class Cell extends React.Component {
 const mapStateToProps = state => {
   return {
     cell: state.field.cells,
-    firstPlayerMove: state.fieldfirstPlayerMove,
+    firstPlayerMove: state.field.firstPlayerMove,
     firstPlayerX: state.field.firstPlayerX
   };
 };

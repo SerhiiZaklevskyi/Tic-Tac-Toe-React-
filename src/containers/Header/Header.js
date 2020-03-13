@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./Header.module.css";
-import PlayerName from "./PlayerName/PlayerName";
-import ResetGame from "./ResetGame/ResetGame";
-import ShowWinner from "./ShowWinner/ShowWinner";
+import PlayerName from "../../components/PlayerName/PlayerName";
+import ResetGame from "../../components/ResetGame/ResetGame";
+import ShowWinner from "../../components/ShowWinner/ShowWinner";
 import { connect } from "react-redux";
-import { chooseSymbol } from "../../actions/fieldAction";
-import { restartGame } from "../../actions/restartAction";
-import { saveFirstName, saveSecondName } from "../../actions/nameAction";
-import ChooseSymbol from "./ChooseSymbol/ChooseSymbol";
+import { chooseSymbol } from "../../actions-reducers/field/fieldAction";
+import { restartGame } from "../../actions-reducers/restart/restartAction";
+import { saveFirstName, saveSecondName } from "../../actions-reducers/name/nameAction";
+import ChooseSymbol from "../../components/ChooseSymbol/ChooseSymbol";
 
 const Header = props => {
   const chooseSymbol = () => {

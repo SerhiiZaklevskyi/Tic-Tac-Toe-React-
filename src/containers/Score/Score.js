@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import {
   changeCounterOne,
   changeCounterTwo
-} from "../../actions/counterAction";
-import { saveFirstName, saveSecondName } from "../../actions/nameAction";
+} from "../../actions-reducers/counter/counterAction";
+import { saveFirstName, saveSecondName } from "../../actions-reducers/name/nameAction";
 import fireAction from "../../utils/action-util";
 
 class Score extends React.Component {
