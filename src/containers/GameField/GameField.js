@@ -35,16 +35,10 @@ export class GameField extends React.Component {
     if (combinations(cells) === "X") {
       this.props.firstPlayerX
         ? this.onVictory(this.props.changeCounterOne, this.props.playerOneName)
-        : this.playerTwoWon(
-            this.props.changeCounterTwo,
-            this.props.playerTwoName
-          );
+        : this.onVictory(this.props.changeCounterTwo, this.props.playerTwoName);
     } else if (combinations(cells) === "O") {
       this.props.firstPlayerX
-        ? this.playerTwoWon(
-            this.props.changeCounterTwo,
-            this.props.playerTwoName
-          )
+        ? this.onVictory(this.props.changeCounterTwo, this.props.playerTwoName)
         : this.onVictory(this.props.changeCounterOne, this.props.PlayerOneName);
     }
   }
