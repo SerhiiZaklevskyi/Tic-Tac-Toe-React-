@@ -12,37 +12,48 @@ import { saveFirstName, saveSecondName } from "../../actions/nameAction";
 const R = require("ramda");
 
 const App = props => {
+  const {
+    playerOneName,
+    playerTwoName,
+    counterOne,
+    counterTwo,
+    cells,
+    saveSecondName,
+    saveFirstName,
+    changeCounterOne,
+    changeCounterTwo
+  } = props;
   return (
     <div>
       <Header
-        playerOneName={props.playerOneName}
-        playerTwoName={props.playerTwoName}
-        counterOne={props.counterOne}
-        counterTwo={props.counterTwo}
-        cells={props.cells}
-        saveFirstName={props.saveFirstName}
-        saveSecondName={props.saveSecondName}
+        playerOneName={playerOneName}
+        playerTwoName={playerTwoName}
+        counterOne={counterOne}
+        counterTwo={counterTwo}
+        cells={cells}
+        saveFirstName={saveFirstName}
+        saveSecondName={saveSecondName}
       />
       <div className={styles.gameWrapper}>
         <GameField
-          playerOneName={props.playerOneName}
-          playerTwoName={props.playerTwoName}
-          counterOne={props.counterOne}
-          counterTwo={props.counterTwo}
-          cells={props.cells}
-          changeCounterOne={props.changeCounterOne}
-          changeCounterTwo={props.changeCounterTwo}
+          playerOneName={playerOneName}
+          playerTwoName={playerTwoName}
+          counterOne={counterOne}
+          counterTwo={counterTwo}
+          cells={cells}
+          changeCounterOne={changeCounterOne}
+          changeCounterTwo={changeCounterTwo}
         />
         <Score
-          playerOneName={props.playerOneName}
-          playerTwoName={props.playerTwoName}
-          counterOne={props.counterOne}
-          counterTwo={props.counterTwo}
-          cells={props.cells}
-          changeCounterOne={props.changeCounterOne}
-          changeCounterTwo={props.changeCounterTwo}
-          saveFirstName={props.saveFirstName}
-          saveSecondName={props.saveSecondName}
+          playerOneName={playerOneName}
+          playerTwoName={playerTwoName}
+          counterOne={counterOne}
+          counterTwo={counterTwo}
+          cells={cells}
+          changeCounterOne={changeCounterOne}
+          changeCounterTwo={changeCounterTwo}
+          saveFirstName={saveFirstName}
+          saveSecondName={saveSecondName}
         />
       </div>
     </div>
