@@ -1,14 +1,7 @@
 import React from "react";
 import styles from "./Score.module.css";
-import { connect } from "react-redux";
-import {
-  changeCounterOne,
-  changeCounterTwo
-} from "../../actions-reducers/counter/counterAction";
-import { saveFirstName, saveSecondName } from "../../actions-reducers/name/nameAction";
 import fireAction from "../../utils/action-util";
-
-class Score extends React.Component {
+export class Score extends React.Component {
   items() {
     return [
       {
@@ -49,20 +42,4 @@ class Score extends React.Component {
   }
 }
 
-const mapDispatchToProps = {
-  changeCounterOne,
-  changeCounterTwo,
-  saveFirstName,
-  saveSecondName
-};
-
-const mapStateToProps = state => {
-  return {
-    playerOneName: state.name.playerOneName,
-    playerTwoName: state.name.playerTwoName,
-    counterOne: state.counter.counterOne,
-    counterTwo: state.counter.counterTwo
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Score);
+export default Score;

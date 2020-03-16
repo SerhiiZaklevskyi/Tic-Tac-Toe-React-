@@ -11,6 +11,7 @@ class PlayerName extends React.Component {
   setItem(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
   }
+
   nameOneHandler() {
     this.props.saveFirstName(this.inputOne.current.value);
     this.setItem("PlayerOneName", this.inputOne.current.value);
