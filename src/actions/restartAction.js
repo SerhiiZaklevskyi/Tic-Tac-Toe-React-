@@ -1,5 +1,5 @@
 export const restartGame = () => {
   return {
-    type: "reset"
+    type: "restart"
   };
 };

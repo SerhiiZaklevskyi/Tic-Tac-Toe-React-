@@ -9,58 +9,43 @@ import {
   changeCounterTwo
 } from "../../actions/counterAction";
 import { saveFirstName, saveSecondName } from "../../actions/nameAction";
-const R = require("ramda");
+import { pick } from "ramda";
 
-const App = props => {
-  const {
-    playerOneName,
-    playerTwoName,
-    counterOne,
-    counterTwo,
-    cells,
-    saveSecondName,
-    saveFirstName,
-    changeCounterOne,
-    changeCounterTwo
-  } = props;
+const App = ({
+  saveSecondName,
+  saveFirstName,
+  changeCounterOne,
+  changeCounterTwo,
+  cells,
+  ...rest
+}) => {
   return (
     <div>
       <Header
-        playerOneName={playerOneName}
-        playerTwoName={playerTwoName}
-        counterOne={counterOne}
-        counterTwo={counterTwo}
-        cells={cells}
         saveFirstName={saveFirstName}
         saveSecondName={saveSecondName}
+        {...rest}
       />
       <div className={styles.gameWrapper}>
         <GameField
-          playerOneName={playerOneName}
-          playerTwoName={playerTwoName}
-          counterOne={counterOne}
-          counterTwo={counterTwo}
-          cells={cells}
           changeCounterOne={changeCounterOne}
           changeCounterTwo={changeCounterTwo}
+          cells={cells}
+          {...rest}
         />
         <Score
-          playerOneName={playerOneName}
-          playerTwoName={playerTwoName}
-          counterOne={counterOne}
-          counterTwo={counterTwo}
-          cells={cells}
           changeCounterOne={changeCounterOne}
           changeCounterTwo={changeCounterTwo}
           saveFirstName={saveFirstName}
           saveSecondName={saveSecondName}
+          {...rest}
         />
       </div>
     </div>
   );
 };
 
-const mapStateToProps = R.pick([
+const mapStateToProps = pick([
   "playerOneName",
   "playerTwoName",
   "counterOne",

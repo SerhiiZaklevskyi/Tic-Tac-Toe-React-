@@ -3,8 +3,9 @@ import styles from "./ChooseSymbol.module.css";
 import fireAction from "../../utils/action-util";
 
 class ChooseSymbol extends React.Component {
-  items() {
-    return [
+  constructor(props) {
+    super(props);
+    this.items = [
       {
         actionName: this.props.firstPlayerChoseX,
         itemName: "firstPlayerX"
@@ -19,32 +20,27 @@ class ChooseSymbol extends React.Component {
       }
     ];
   }
+
   componentDidMount() {
-    this.items().forEach(fireAction);
+    this.items.forEach(fireAction);
   }
 
-  handleClick(value) {
+  handleClick = value => () => {
     this.props.choosePlayer(value);
     this.props.firstPlayerChoseX(value);
     this.props.chooseSymbol();
-    this.items().forEach(item =>
+    this.items.forEach(item =>
       localStorage.setItem(item.itemName, JSON.stringify(value))
     );
-  }
+  };
   render() {
     return (
       <div className={styles.chooseSymbol}>
         <p>Chose your symbol</p>
-        <button
-          className={styles.xButton}
-          onClick={this.handleClick.bind(this, true)}
-        >
+        <button className={styles.xButton} onClick={this.handleClick(true)}>
           X
         </button>
-        <button
-          className={styles.oButton}
-          onClick={this.handleClick.bind(this, false)}
-        >
+        <button className={styles.oButton} onClick={this.handleClick(false)}>
           O
         </button>
       </div>

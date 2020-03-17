@@ -1,5 +1,5 @@
 const initialState = {
-  cells: Array(9).fill(null),
+  cells: Array(9).fill(),
   firstPlayerMove: true,
   firstPlayerX: true,
   symbolChosen: false,
@@ -11,7 +11,7 @@ const initialState = {
 };
 
 export const rootReducer = (state = initialState, action) => {
-  if (action.type === "reset") {
+  if (action.type === "restart") {
     state = initialState;
   }
   if (typeof action.execute === "function") return action.execute(state);

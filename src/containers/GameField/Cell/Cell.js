@@ -1,8 +1,5 @@
 import React from "react";
 import styles from "./Cell.module.css";
-import { connect } from "react-redux";
-import { switchTurn, chooseSymbol } from "../../../actions/fieldAction";
-const R = require("ramda");
 
 export const Cell = props => {
   const setItem = (key, value) => {
@@ -15,8 +12,8 @@ export const Cell = props => {
     props.chooseSymbol();
   };
 
-  const handleClick = event => {
-    if (event.target.innerText !== "") return;
+  const handleClick = ({ target: { innerText } }) => {
+    if (innerText !== "") return;
     defaultSymbol();
     props.firstPlayerMove
       ? props.switchTurn("X", props.id)
@@ -31,11 +28,4 @@ export const Cell = props => {
   );
 };
 
-const mapStateToProps = R.pick(["firstPlayerMove"]);
-
-const mapDispatchToProps = {
-  switchTurn,
-  chooseSymbol
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cell);
+export default Cell;

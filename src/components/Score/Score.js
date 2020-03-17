@@ -2,8 +2,9 @@ import React from "react";
 import styles from "./Score.module.css";
 import fireAction from "../../utils/action-util";
 export class Score extends React.Component {
-  items() {
-    return [
+  constructor(props) {
+    super(props);
+    this.items = [
       {
         actionName: this.props.saveFirstName,
         itemName: "PlayerOneName"
@@ -22,8 +23,9 @@ export class Score extends React.Component {
       }
     ];
   }
+
   componentDidMount() {
-    this.items().forEach(fireAction);
+    this.items.forEach(fireAction);
   }
 
   render() {

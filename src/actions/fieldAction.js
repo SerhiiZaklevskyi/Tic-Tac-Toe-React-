@@ -1,11 +1,11 @@
+import { update } from "ramda";
 const type = "field";
-const R = require("ramda");
 
 export const switchTurn = (value, index) => ({
   execute: function(state) {
     return {
       ...state,
-      cells: R.update(index, value, state.cells),
+      cells: update(index, value, state.cells),
       firstPlayerMove: !state.firstPlayerMove
     };
   },

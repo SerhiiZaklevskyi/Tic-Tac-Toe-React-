@@ -4,9 +4,14 @@ import Cell from "./Cell/Cell";
 import { connect } from "react-redux";
 import { getCells } from "../../actions/fieldAction";
 import combinations from "../../utils/combinations";
-import { showWinner, resetGame } from "../../actions/fieldAction";
+import {
+  showWinner,
+  resetGame,
+  switchTurn,
+  chooseSymbol
+} from "../../actions/fieldAction";
 import { store } from "../../store/configureStore";
-const R = require("ramda");
+import { pick } from "ramda";
 
 export class GameField extends React.Component {
   componentDidMount() {
@@ -53,6 +58,9 @@ export class GameField extends React.Component {
               id={index}
               checkWinner={this.checkWinner.bind(this)}
               firstPlayerX={this.props.firstPlayerX}
+              firstPlayerMove={this.props.firstPlayerMove}
+              switchTurn={this.props.switchTurn}
+              chooseSymbol={this.props.chooseSymbol}
               cell={cell}
             />
           ))}
@@ -62,12 +70,14 @@ export class GameField extends React.Component {
   }
 }
 
-const mapStateToProps = R.pick(["firstPlayerX"]);
+const mapStateToProps = pick(["firstPlayerX", "firstPlayerMove"]);
 
 const mapDispatchToProps = {
   getCells,
   resetGame,
-  showWinner
+  showWinner,
+  switchTurn,
+  chooseSymbol
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameField);

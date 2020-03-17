@@ -11,36 +11,47 @@ import {
 } from "../../actions/fieldAction";
 import { restartGame } from "../../actions/restartAction";
 import ChooseSymbol from "../../components/ChooseSymbol/ChooseSymbol";
-const R = require("ramda");
+import { pick } from "ramda";
 
-export const Header = props => {
+export const Header = ({
+  saveFirstName,
+  saveSecondName,
+  restartGame,
+  winner,
+  playerOneName,
+  playerTwoName,
+  symbolChosen,
+  choosePlayer,
+  chooseSymbol,
+  firstPlayerChoseX
+}) => {
   return (
     <div className={styles.headerWrapper}>
       <p className={styles.header}>Tic-Tac-Toe!</p>
       <div id={styles.playersWrapper}>
         <PlayerName
-          saveFirstName={props.saveFirstName}
-          saveSecondName={props.saveSecondName}
+          saveFirstName={saveFirstName}
+          saveSecondName={saveSecondName}
         />
       </div>
-      <ResetGame restartGame={props.restartGame} />
+      <ResetGame restartGame={restartGame} />
       <ShowWinner
-        winner={props.winner}
-        playerOneName={props.playerOneName}
-        playerTwoName={props.playerTwoName}
+        winner={winner}
+        playerOneName={playerOneName}
+        playerTwoName={playerTwoName}
       />
-      {!props.symbolChosen && (
+      {!symbolChosen && (
         <ChooseSymbol
-          choosePlayer={props.choosePlayer}
-          chooseSymbol={props.chooseSymbol}
-          firstPlayerChoseX={props.firstPlayerChoseX}
+          choosePlayer={choosePlayer}
+          chooseSymbol={chooseSymbol}
+          firstPlayerChoseX={firstPlayerChoseX}
         />
       )}
     </div>
   );
 };
 
-const mapStateToProps = R.pick(["symbolChosen", "winner"]);
+const mapStateToProps = pick(["symbolChosen", "winner"]);
 
 const mapDispatchToProps = {
   chooseSymbol,
