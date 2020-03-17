@@ -2,7 +2,7 @@ import { update } from "ramda";
 const type = "field";
 
 export const switchTurn = (value, index) => ({
-  execute: function(state) {
+  execute: state => {
     return {
       ...state,
       cells: update(index, value, state.cells),
@@ -28,7 +28,7 @@ export const chooseSymbol = () => ({
 });
 
 export const resetGame = payload => ({
-  execute: function(state) {
+  execute: state => {
     return {
       ...state,
       cells: Array(9).fill(null),

@@ -26,11 +26,11 @@ class PlayerName extends React.Component {
     this.setItem("PlayerTwoName", this.inputTwo.current.value);
     this.inputTwo.current.value = "";
   }
-  nameOneKeyPress(event) {
-    event.key === "Enter" && this.nameOneHandler();
+  nameOneKeyPress({ key }) {
+    key === "Enter" && this.nameOneHandler();
   }
-  nameTwoKeyPress(event) {
-    event.key === "Enter" && this.nameTwoHandler();
+  nameTwoKeyPress({ key }) {
+    key === "Enter" && this.nameTwoHandler();
   }
 
   render() {

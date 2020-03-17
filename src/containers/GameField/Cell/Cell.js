@@ -1,29 +1,35 @@
 import React from "react";
 import styles from "./Cell.module.css";
 
-export const Cell = props => {
+export const Cell = ({
+  switchTurn,
+  firstPlayerMove,
+  id,
+  firstPlayerX,
+  chooseSymbol,
+  cell,
+  symbolChosen
+}) => {
   const setItem = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));
   };
 
   const defaultSymbol = () => {
-    setItem("firstPlayerX", props.firstPlayerX);
+    if (symbolChosen !== null) return;
+    setItem("firstPlayerX", firstPlayerX);
     setItem("symbolChosen", true);
-    props.chooseSymbol();
+    chooseSymbol();
   };
 
   const handleClick = ({ target: { innerText } }) => {
     if (innerText !== "") return;
     defaultSymbol();
-    props.firstPlayerMove
-      ? props.switchTurn("X", props.id)
-      : props.switchTurn("O", props.id);
-    setItem("firstPlayerMove", !props.firstPlayerMove);
-    props.checkWinner();
+    firstPlayerMove ? switchTurn("X", id) : switchTurn("O", id);
+    setItem("firstPlayerMove", !firstPlayerMove);
   };
   return (
-    <p className={styles.cell} onClick={handleClick.bind(this)}>
-      {props.cell}
+    <p className={styles.cell} onClick={handleClick}>
+      {cell}
     </p>
   );
 };

@@ -2,7 +2,7 @@ const initialState = {
   cells: Array(9).fill(),
   firstPlayerMove: true,
   firstPlayerX: true,
-  symbolChosen: false,
+  symbolChosen: null,
   winner: null,
   playerOneName: "First Player",
   playerTwoName: "Second Player",

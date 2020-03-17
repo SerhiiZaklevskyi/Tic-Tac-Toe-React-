@@ -1,13 +1,13 @@
 const type = "counter";
 
 export const changeCounterOne = payload => ({
-  execute: function(state) {
+  execute: state => {
     return { ...state, counterOne: state.counterOne + payload };
   },
   type
 });
 export const changeCounterTwo = payload => ({
-  execute: function(state) {
+  execute: state => {
     return { ...state, counterTwo: state.counterTwo + payload };
   },
   type
