@@ -26,12 +26,10 @@ class ChooseSymbol extends React.Component {
   }
 
   handleClick = value => () => {
-    this.props.choosePlayer(value);
-    this.props.firstPlayerChoseX(value);
-    this.props.chooseSymbol();
-    this.items.forEach(item =>
-      localStorage.setItem(item.itemName, JSON.stringify(value))
-    );
+    this.items.forEach(item => {
+      localStorage.setItem(item.itemName, JSON.stringify(value));
+      item.actionName(value);
+    });
   };
   render() {
     return (
