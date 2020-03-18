@@ -1,11 +1,12 @@
+import { initialState } from "../reducers/rootReducer";
 import { update } from "ramda";
 const type = "field";
 
-export const switchTurn = (value, index) => ({
+export const switchTurn = payload => ({
   execute: state => {
     return {
       ...state,
-      cells: update(index, value, state.cells),
+      cells: update(payload.id, payload, state.cells),
       firstPlayerMove: !state.firstPlayerMove
     };
   },
@@ -31,7 +32,7 @@ export const resetGame = payload => ({
   execute: state => {
     return {
       ...state,
-      cells: Array(9).fill(null),
+      cells: initialState.cells,
       firstPlayerMove: payload,
       firstPlayerX: payload
     };

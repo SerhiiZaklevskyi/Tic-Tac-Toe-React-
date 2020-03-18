@@ -4,7 +4,6 @@ import styles from "./Cell.module.css";
 export const Cell = ({
   switchTurn,
   firstPlayerMove,
-  id,
   firstPlayerX,
   chooseSymbol,
   cell,
@@ -24,12 +23,14 @@ export const Cell = ({
   const handleClick = ({ target: { innerText } }) => {
     if (innerText !== "") return;
     defaultSymbol();
-    firstPlayerMove ? switchTurn("X", id) : switchTurn("O", id);
+    firstPlayerMove
+      ? switchTurn({ value: "X", id: cell.id })
+      : switchTurn({ value: "O", id: cell.id });
     setItem("firstPlayerMove", !firstPlayerMove);
   };
   return (
     <p className={styles.cell} onClick={handleClick}>
-      {cell}
+      {cell.value}
     </p>
   );
 };

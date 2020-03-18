@@ -56,19 +56,26 @@ export class GameField extends React.Component {
   }
 
   render() {
+    const {
+      firstPlayerX,
+      firstPlayerMove,
+      switchTurn,
+      chooseSymbol,
+      symbolChosen,
+      cells
+    } = this.props;
     return (
       <div className={styles.gameField}>
         <div className={styles.cellsWrapper}>
-          {this.props.cells.map((cell, index) => (
+          {cells.map(cell => (
             <Cell
-              key={index}
-              id={index}
+              key={cell.id}
               cell={cell}
-              firstPlayerX={this.props.firstPlayerX}
-              firstPlayerMove={this.props.firstPlayerMove}
-              switchTurn={this.props.switchTurn}
-              chooseSymbol={this.props.chooseSymbol}
-              symbolChosen={this.props.symbolChosen}
+              firstPlayerX={firstPlayerX}
+              firstPlayerMove={firstPlayerMove}
+              switchTurn={switchTurn}
+              chooseSymbol={chooseSymbol}
+              symbolChosen={symbolChosen}
             />
           ))}
         </div>
