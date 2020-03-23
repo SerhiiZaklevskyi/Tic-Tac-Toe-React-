@@ -23,8 +23,8 @@ export const firstPlayerChoseX = payload => ({
   type
 });
 
-export const chooseSymbol = () => ({
-  execute: state => ({ ...state, symbolChosen: true }),
+export const chooseSymbol = payload => ({
+  execute: state => ({ ...state, symbolChosen: true, playerSymbol: payload }),
   type
 });
 

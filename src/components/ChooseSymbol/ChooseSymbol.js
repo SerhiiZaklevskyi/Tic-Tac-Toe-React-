@@ -16,7 +16,7 @@ class ChooseSymbol extends React.Component {
       },
       {
         actionName: this.props.chooseSymbol,
-        itemName: "symbolChosen"
+        itemName: "playerSymbol"
       }
     ];
   }
@@ -25,20 +25,32 @@ class ChooseSymbol extends React.Component {
     this.items.forEach(fireAction);
   }
 
-  handleClick = value => () => {
+  handleClick = (value, symbol) => () => {
+    const setItem = (key, item) =>
+      localStorage.setItem(key, JSON.stringify(item));
     this.items.forEach(item => {
-      localStorage.setItem(item.itemName, JSON.stringify(value));
-      item.actionName(value);
+      if (item.itemName !== "playerSymbol") {
+        setItem(item.itemName, value);
+        item.actionName(value);
+      }
     });
+    setItem("playerSymbol", this.props.playerSymbol);
+    this.props.chooseSymbol(symbol);
   };
   render() {
     return (
       <div className={styles.chooseSymbol}>
         <p>Chose your symbol</p>
-        <button className={styles.xButton} onClick={this.handleClick(true)}>
+        <button
+          className={styles.xButton}
+          onClick={this.handleClick(true, "X")}
+        >
           X
         </button>
-        <button className={styles.oButton} onClick={this.handleClick(false)}>
+        <button
+          className={styles.oButton}
+          onClick={this.handleClick(false, "O")}
+        >
           O
         </button>
       </div>

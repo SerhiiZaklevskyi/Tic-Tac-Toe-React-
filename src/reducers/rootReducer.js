@@ -13,6 +13,7 @@ export const initialState = {
   firstPlayerMove: true,
   firstPlayerX: true,
   symbolChosen: null,
+  playerSymbol: "X",
   winner: null,
   playerOneName: "First Player",
   playerTwoName: "Second Player",

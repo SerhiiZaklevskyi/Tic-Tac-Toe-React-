@@ -44,15 +44,11 @@ export class GameField extends React.Component {
     this.setItem("cells", this.props.cells);
     const symbol = combinations(this.props.cells);
     if (!symbol) return;
-    const { resetGame, firstPlayerX } = this.props;
+    const { resetGame, firstPlayerX, playerSymbol } = this.props;
     resetGame(!!firstPlayerX);
     this.setItem("firstPlayerMove", !!firstPlayerX);
     localStorage.removeItem("cells");
-    if (symbol === "X") {
-      firstPlayerX ? this.firstPlayerWon() : this.secondPlayerWon();
-    } else if (symbol === "O") {
-      firstPlayerX ? this.secondPlayerWon() : this.firstPlayerWon();
-    }
+    playerSymbol === symbol ? this.firstPlayerWon() : this.secondPlayerWon();
   }
 
   render() {
@@ -62,7 +58,8 @@ export class GameField extends React.Component {
       switchTurn,
       chooseSymbol,
       symbolChosen,
-      cells
+      cells,
+      playerSymbol
     } = this.props;
     return (
       <div className={styles.gameField}>
@@ -76,6 +73,7 @@ export class GameField extends React.Component {
               switchTurn={switchTurn}
               chooseSymbol={chooseSymbol}
               symbolChosen={symbolChosen}
+              playerSymbol={playerSymbol}
             />
           ))}
         </div>
@@ -89,7 +87,8 @@ const mapStateToProps = pick([
   "firstPlayerMove",
   "counterOne",
   "counterTwo",
-  "symbolChosen"
+  "symbolChosen",
+  "playerSymbol"
 ]);
 
 const mapDispatchToProps = {

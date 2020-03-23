@@ -7,7 +7,8 @@ export const Cell = ({
   firstPlayerX,
   chooseSymbol,
   cell,
-  symbolChosen
+  symbolChosen,
+  playerSymbol
 }) => {
   const setItem = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));
@@ -15,9 +16,13 @@ export const Cell = ({
 
   const defaultSymbol = () => {
     if (symbolChosen !== null) return;
-    setItem("firstPlayerX", firstPlayerX);
-    setItem("symbolChosen", true);
-    chooseSymbol();
+    const items = [
+      { key: "firstPlayerX", value: firstPlayerX },
+      { key: "symbolChosen", value: true },
+      { key: "playerSymbol", value: playerSymbol }
+    ];
+    items.forEach(item => setItem(item.key, item.value));
+    chooseSymbol("X");
   };
 
   const handleClick = ({ target: { innerText } }) => {

@@ -23,7 +23,8 @@ export const Header = ({
   symbolChosen,
   choosePlayer,
   chooseSymbol,
-  firstPlayerChoseX
+  firstPlayerChoseX,
+  playerSymbol
 }) => {
   return (
     <div className={styles.headerWrapper}>
@@ -45,13 +46,14 @@ export const Header = ({
           choosePlayer={choosePlayer}
           chooseSymbol={chooseSymbol}
           firstPlayerChoseX={firstPlayerChoseX}
+          playerSymbol={playerSymbol}
         />
       )}
     </div>
   );
 };
 
-const mapStateToProps = pick(["symbolChosen", "winner"]);
+const mapStateToProps = pick(["symbolChosen", "winner", "playerSymbol"]);
 
 const mapDispatchToProps = {
   chooseSymbol,
