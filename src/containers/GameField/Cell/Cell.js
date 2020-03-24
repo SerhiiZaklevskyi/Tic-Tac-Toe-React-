@@ -14,13 +14,14 @@ export const Cell = ({
     localStorage.setItem(key, JSON.stringify(value));
   };
 
+  const items = [
+    { key: "firstPlayerX", value: firstPlayerX },
+    { key: "symbolChosen", value: true },
+    { key: "playerSymbol", value: playerSymbol }
+  ];
+
   const defaultSymbol = () => {
     if (symbolChosen !== null) return;
-    const items = [
-      { key: "firstPlayerX", value: firstPlayerX },
-      { key: "symbolChosen", value: true },
-      { key: "playerSymbol", value: playerSymbol }
-    ];
     items.forEach(item => setItem(item.key, item.value));
     chooseSymbol("X");
   };
