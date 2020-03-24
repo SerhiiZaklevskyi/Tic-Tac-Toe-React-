@@ -1,24 +1,13 @@
-export const initialState = {
-  cells: [
-    { value: null, id: 0 },
-    { value: null, id: 1 },
-    { value: null, id: 2 },
-    { value: null, id: 3 },
-    { value: null, id: 4 },
-    { value: null, id: 5 },
-    { value: null, id: 6 },
-    { value: null, id: 7 },
-    { value: null, id: 8 }
-  ],
-  firstPlayerMove: true,
-  firstPlayerX: true,
-  symbolChosen: null,
-  playerSymbol: "X",
-  winner: null,
-  playerOneName: "First Player",
-  playerTwoName: "Second Player",
-  counterOne: 0,
-  counterTwo: 0
+import { nameReducer } from "./nameReducer";
+import { fieldReducer } from "./fieldReducer";
+import { counterReducer } from "./counterReducer";
+import { symbolReducer } from "./symbolReducer";
+
+const initialState = {
+  ...nameReducer,
+  ...fieldReducer,
+  ...counterReducer,
+  ...symbolReducer
 };
 
 export const rootReducer = (state = initialState, action) => {

@@ -1,4 +1,4 @@
-import { initialState } from "../reducers/rootReducer";
+import { fieldReducer as initialState } from "../reducers/fieldReducer";
 import { update } from "ramda";
 const type = "field";
 

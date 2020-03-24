@@ -34,8 +34,8 @@ class ChooseSymbol extends React.Component {
         item.actionName(value);
       }
     });
-    setItem("playerSymbol", this.props.playerSymbol);
     this.props.chooseSymbol(symbol);
+    setItem("playerSymbol", symbol);
   };
   render() {
     return (
