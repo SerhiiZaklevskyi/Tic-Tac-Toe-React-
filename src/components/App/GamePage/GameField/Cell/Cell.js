@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Cell.module.css";
+import PropTypes from "prop-types";
 
 export const Cell = ({
   switchTurn,
@@ -39,6 +40,16 @@ export const Cell = ({
       {cell.value}
     </p>
   );
+};
+Cell.propTypes = {
+  chooseSymbol: PropTypes.func.isRequired,
+  switchTurn: PropTypes.func.isRequired,
+  firstPlayerMove: PropTypes.bool.isRequired,
+  firstPlayerX: PropTypes.bool.isRequired,
+  playerSymbol: PropTypes.string.isRequired,
+  cell: PropTypes.shape({
+    id: PropTypes.number.isRequired
+  })
 };
 
 export default Cell;

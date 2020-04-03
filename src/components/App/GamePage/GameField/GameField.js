@@ -2,15 +2,16 @@ import React from "react";
 import styles from "./GameField.module.css";
 import Cell from "./Cell/Cell";
 import { connect } from "react-redux";
-import { getCells } from "../../actions/fieldAction";
-import combinations from "../../utils/combinations";
+import combinations from "../../../../utils/combinations";
 import {
   showWinner,
   resetGame,
   switchTurn,
-  chooseSymbol
-} from "../../actions/fieldAction";
+  chooseSymbol,
+  getCells
+} from "../../../../actions/fieldAction";
 import { pick } from "ramda";
+import PropTypes from "prop-types";
 
 export class GameField extends React.Component {
   componentDidMount() {
@@ -81,6 +82,18 @@ export class GameField extends React.Component {
     );
   }
 }
+
+GameField.propTypes = {
+  changeCounterOne: PropTypes.func.isRequired,
+  changeCounterTwo: PropTypes.func.isRequired,
+  getCells: PropTypes.func.isRequired,
+  resetGame: PropTypes.func.isRequired,
+  showWinner: PropTypes.func.isRequired,
+  counterOne: PropTypes.number.isRequired,
+  counterTwo: PropTypes.number.isRequired,
+  playerOneName: PropTypes.string.isRequired,
+  playerTwoName: PropTypes.string.isRequired
+};
 
 const mapStateToProps = pick([
   "firstPlayerX",

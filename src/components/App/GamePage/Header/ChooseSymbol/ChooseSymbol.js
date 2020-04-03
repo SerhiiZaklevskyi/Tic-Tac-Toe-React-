@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./ChooseSymbol.module.css";
-import fireAction from "../../utils/action-util";
+import fireAction from "../../../../../utils/action-util";
+import PropTypes from "prop-types";
 
 class ChooseSymbol extends React.Component {
   constructor(props) {
@@ -58,4 +59,10 @@ class ChooseSymbol extends React.Component {
   }
 }
 
+ChooseSymbol.propTypes = {
+  choosePlayer: PropTypes.func.isRequired,
+  chooseSymbol: PropTypes.func.isRequired,
+  firstPlayerChoseX: PropTypes.func.isRequired,
+  playerSymbol: PropTypes.string.isRequired
+};
 export default ChooseSymbol;

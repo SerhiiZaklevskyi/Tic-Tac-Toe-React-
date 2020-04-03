@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./Score.module.css";
-import fireAction from "../../utils/action-util";
+import fireAction from "../../../../utils/action-util";
+import PropTypes from "prop-types";
+
 export class Score extends React.Component {
   constructor(props) {
     super(props);
@@ -44,4 +46,10 @@ export class Score extends React.Component {
   }
 }
 
+Score.propTypes = {
+  changeCounterOne: PropTypes.func.isRequired,
+  changeCounterTwo: PropTypes.func.isRequired,
+  saveFirstName: PropTypes.func.isRequired,
+  saveSecondName: PropTypes.func.isRequired
+};
 export default Score;

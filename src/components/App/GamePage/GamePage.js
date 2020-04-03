@@ -1,17 +1,17 @@
 import React from "react";
-import styles from "./App.module.css";
-import Header from "../Header/Header";
-import Score from "../../components/Score/Score";
-import GameField from "../GameField/GameField";
+import styles from "./GamePage.module.css";
+import Header from "./Header/Header";
+import Score from "./Score/Score";
+import GameField from "./GameField/GameField";
 import { connect } from "react-redux";
 import {
   changeCounterOne,
   changeCounterTwo
-} from "../../actions/counterAction";
-import { saveFirstName, saveSecondName } from "../../actions/nameAction";
+} from "../../../actions/counterAction";
+import { saveFirstName, saveSecondName } from "../../../actions/nameAction";
 import { pick } from "ramda";
 
-const App = ({
+const GamePage = ({
   saveSecondName,
   saveFirstName,
   changeCounterOne,
@@ -60,4 +60,4 @@ const mapDispatchToProps = {
   saveSecondName
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(GamePage);

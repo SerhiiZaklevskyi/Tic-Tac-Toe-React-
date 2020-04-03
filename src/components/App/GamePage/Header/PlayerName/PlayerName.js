@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./PlayerName.module.css";
+import PropTypes from "prop-types";
 
 class PlayerName extends React.Component {
   constructor(props) {
@@ -72,5 +73,10 @@ class PlayerName extends React.Component {
     );
   }
 }
+
+PlayerName.propTypes = {
+  saveFirstName: PropTypes.func.isRequired,
+  saveSecondName: PropTypes.func.isRequired
+};
 
 export default PlayerName;

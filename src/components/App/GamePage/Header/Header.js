@@ -1,16 +1,16 @@
 import React from "react";
 import styles from "./Header.module.css";
-import PlayerName from "../../components/PlayerName/PlayerName";
-import ResetGame from "../../components/ResetGame/ResetGame";
-import ShowWinner from "../../components/ShowWinner/ShowWinner";
+import PlayerName from "./PlayerName/PlayerName";
+import ResetGame from "./ResetGame/ResetGame";
+import ShowWinner from "./ShowWinner/ShowWinner";
 import { connect } from "react-redux";
 import {
   choosePlayer,
   chooseSymbol,
   firstPlayerChoseX
-} from "../../actions/fieldAction";
-import { restartGame } from "../../actions/restartAction";
-import ChooseSymbol from "../../components/ChooseSymbol/ChooseSymbol";
+} from "../../../../actions/fieldAction";
+import { restartGame } from "../../../../actions/restartAction";
+import ChooseSymbol from "./ChooseSymbol/ChooseSymbol";
 import { pick } from "ramda";
 
 export const Header = ({
