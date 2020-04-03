@@ -6,12 +6,11 @@ import ShowWinner from "./ShowWinner/ShowWinner";
 import { connect } from "react-redux";
 import {
   choosePlayer,
-  chooseSymbol,
   firstPlayerChoseX
-} from "../../../../actions/fieldAction";
-import { restartGame } from "../../../../actions/restartAction";
+} from "../../../../actions_reducers/field/fieldAction";
+import { chooseSymbol } from "../../../../actions_reducers/symbol/symbolAction";
+import { restartGame } from "../../../../actions_reducers/restart/restartAction";
 import ChooseSymbol from "./ChooseSymbol/ChooseSymbol";
-import { pick } from "ramda";
 
 export const Header = ({
   saveFirstName,
@@ -53,7 +52,16 @@ export const Header = ({
   );
 };
 
-const mapStateToProps = pick(["symbolChosen", "winner", "playerSymbol"]);
+const mapStateToProps = ({
+  symbol: { symbolChosen, playerSymbol },
+  field: { winner }
+}) => {
+  return {
+    symbolChosen,
+    playerSymbol,
+    winner
+  };
+};
 
 const mapDispatchToProps = {
   chooseSymbol,

@@ -7,10 +7,9 @@ import {
   showWinner,
   resetGame,
   switchTurn,
-  chooseSymbol,
   getCells
-} from "../../../../actions/fieldAction";
-import { pick } from "ramda";
+} from "../../../../actions_reducers/field/fieldAction";
+import { chooseSymbol } from "../../../../actions_reducers/symbol/symbolAction";
 import PropTypes from "prop-types";
 
 export class GameField extends React.Component {
@@ -95,15 +94,21 @@ GameField.propTypes = {
   playerTwoName: PropTypes.string.isRequired
 };
 
-const mapStateToProps = pick([
-  "firstPlayerX",
-  "firstPlayerMove",
-  "counterOne",
-  "counterTwo",
-  "symbolChosen",
-  "playerSymbol"
-]);
-
+const mapStateToProps = ({
+  field: { firstPlayerMove, firstPlayerX, cells },
+  counter: { counterOne, counterTwo },
+  symbol: { symbolChosen, playerSymbol }
+}) => {
+  return {
+    firstPlayerX,
+    firstPlayerMove,
+    counterOne,
+    counterTwo,
+    symbolChosen,
+    playerSymbol,
+    cells
+  };
+};
 const mapDispatchToProps = {
   getCells,
   resetGame,

@@ -1,4 +1,4 @@
-export const fieldReducer = {
+export const initialState = {
   cells: [
     { value: null, id: 0 },
     { value: null, id: 1 },
@@ -13,4 +13,10 @@ export const fieldReducer = {
   firstPlayerMove: true,
   firstPlayerX: true,
   winner: null
+};
+
+export const fieldReducer = (state = initialState, action) => {
+  if (typeof action.execute === "function" && action.type === "field")
+    return action.execute(state);
+  return state;
 };

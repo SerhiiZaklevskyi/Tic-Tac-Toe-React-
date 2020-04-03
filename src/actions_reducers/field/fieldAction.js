@@ -1,4 +1,4 @@
-import { fieldReducer as initialState } from "../reducers/fieldReducer";
+import { initialState } from "./fieldReducer";
 import { update } from "ramda";
 const type = "field";
 
@@ -20,11 +20,6 @@ export const choosePlayer = payload => ({
 
 export const firstPlayerChoseX = payload => ({
   execute: state => ({ ...state, firstPlayerX: payload }),
-  type
-});
-
-export const chooseSymbol = payload => ({
-  execute: state => ({ ...state, symbolChosen: true, playerSymbol: payload }),
   type
 });
 

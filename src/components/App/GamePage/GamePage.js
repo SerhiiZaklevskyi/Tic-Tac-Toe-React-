@@ -7,16 +7,17 @@ import { connect } from "react-redux";
 import {
   changeCounterOne,
   changeCounterTwo
-} from "../../../actions/counterAction";
-import { saveFirstName, saveSecondName } from "../../../actions/nameAction";
-import { pick } from "ramda";
+} from "../../../actions_reducers/counter/counterAction";
+import {
+  saveFirstName,
+  saveSecondName
+} from "../../../actions_reducers/name/nameAction";
 
 const GamePage = ({
   saveSecondName,
   saveFirstName,
   changeCounterOne,
   changeCounterTwo,
-  cells,
   ...rest
 }) => {
   return (
@@ -30,7 +31,6 @@ const GamePage = ({
         <GameField
           changeCounterOne={changeCounterOne}
           changeCounterTwo={changeCounterTwo}
-          cells={cells}
           {...rest}
         />
         <Score
@@ -45,14 +45,17 @@ const GamePage = ({
   );
 };
 
-const mapStateToProps = pick([
-  "playerOneName",
-  "playerTwoName",
-  "counterOne",
-  "counterTwo",
-  "cells"
-]);
-
+const mapStateToProps = ({
+  counter: { counterOne, counterTwo },
+  name: { playerOneName, playerTwoName }
+}) => {
+  return {
+    counterOne,
+    counterTwo,
+    playerOneName,
+    playerTwoName
+  };
+};
 const mapDispatchToProps = {
   changeCounterOne,
   changeCounterTwo,
