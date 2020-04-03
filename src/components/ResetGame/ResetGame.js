@@ -1,14 +1,14 @@
 import React from "react";
 import styles from "./ResetGame.module.css";
 
-const ResetGame = props => {
-  const restartGame = () => {
+const ResetGame = ({ restartGame }) => {
+  const handleClick = () => {
     localStorage.clear();
-    props.restartGame();
+    restartGame();
   };
   return (
     <span className={styles.resettWrapper}>
-      <button className={styles.resetGame} onClick={restartGame}>
+      <button className={styles.resetGame} onClick={handleClick}>
         ResetGame
       </button>
     </span>

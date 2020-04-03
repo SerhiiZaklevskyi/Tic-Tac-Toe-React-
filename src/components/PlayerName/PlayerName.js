@@ -6,11 +6,16 @@ class PlayerName extends React.Component {
     super(props);
     this.inputOne = React.createRef();
     this.inputTwo = React.createRef();
+    this.nameOneHandler = this.nameOneHandler.bind(this);
+    this.nameTwoHandler = this.nameTwoHandler.bind(this);
+    this.nameOneKeyPress = this.nameOneKeyPress.bind(this);
+    this.nameTwoKeyPress = this.nameTwoKeyPress.bind(this);
   }
 
   setItem(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
   }
+
   nameOneHandler() {
     this.props.saveFirstName(this.inputOne.current.value);
     this.setItem("PlayerOneName", this.inputOne.current.value);
@@ -21,11 +26,11 @@ class PlayerName extends React.Component {
     this.setItem("PlayerTwoName", this.inputTwo.current.value);
     this.inputTwo.current.value = "";
   }
-  nameOneKeyPress(event) {
-    event.key === "Enter" && this.nameOneHandler();
+  nameOneKeyPress({ key }) {
+    key === "Enter" && this.nameOneHandler();
   }
-  nameTwoKeyPress(event) {
-    event.key === "Enter" && this.nameTwoHandler();
+  nameTwoKeyPress({ key }) {
+    key === "Enter" && this.nameTwoHandler();
   }
 
   render() {
@@ -34,7 +39,7 @@ class PlayerName extends React.Component {
         <span className={styles.playerOne}>
           <input
             type="text"
-            onKeyPress={this.nameOneKeyPress.bind(this)}
+            onKeyPress={this.nameOneKeyPress}
             id={styles.playerOne}
             placeholder="Player-1"
             ref={this.inputOne}
@@ -42,7 +47,7 @@ class PlayerName extends React.Component {
           <button
             className={styles.save}
             id="savePlayerOne"
-            onClick={this.nameOneHandler.bind(this)}
+            onClick={this.nameOneHandler}
           >
             save
           </button>
@@ -53,12 +58,12 @@ class PlayerName extends React.Component {
             id={styles.playerTwo}
             placeholder="Player-2"
             ref={this.inputTwo}
-            onKeyPress={this.nameTwoKeyPress.bind(this)}
+            onKeyPress={this.nameTwoKeyPress}
           />
           <button
             className={styles.save}
             id="savePlayerTwo"
-            onClick={this.nameTwoHandler.bind(this)}
+            onClick={this.nameTwoHandler}
           >
             save
           </button>

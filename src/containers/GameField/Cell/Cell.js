@@ -1,48 +1,44 @@
 import React from "react";
 import styles from "./Cell.module.css";
-import { connect } from "react-redux";
-import { switchTurn } from "../../../actions-reducers/field/fieldAction";
 
-class Cell extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  setItem(key, value) {
+export const Cell = ({
+  switchTurn,
+  firstPlayerMove,
+  firstPlayerX,
+  chooseSymbol,
+  cell,
+  symbolChosen,
+  playerSymbol
+}) => {
+  const setItem = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));
-  }
-
-  handleClick(event) {
-    this.setItem("firstPlayerX", this.props.firstPlayerX);
-    if (event.target.innerText === "") {
-      this.props.firstPlayerMove 
-        ? this.props.switchTurn("X", this.props.id)
-        : this.props.switchTurn("O", this.props.id);
-      this.setItem("firstPlayerMove", !this.props.firstPlayerMove);
-      this.props.checkWinner();
-    }
-  }
-
-  render() {
-    return (
-      <p className={styles.cell} onClick={this.handleClick}>
-        {this.props.cell[this.props.id]}
-      </p>
-    );
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    cell: state.field.cells,
-    firstPlayerMove: state.field.firstPlayerMove,
-    firstPlayerX: state.field.firstPlayerX
   };
+
+  const items = [
+    { key: "firstPlayerX", value: firstPlayerX },
+    { key: "symbolChosen", value: true },
+    { key: "playerSymbol", value: playerSymbol }
+  ];
+
+  const defaultSymbol = () => {
+    if (symbolChosen !== null) return;
+    items.forEach(item => setItem(item.key, item.value));
+    chooseSymbol("X");
+  };
+
+  const handleClick = ({ target: { innerText } }) => {
+    if (innerText !== "") return;
+    defaultSymbol();
+    firstPlayerMove
+      ? switchTurn({ value: "X", id: cell.id })
+      : switchTurn({ value: "O", id: cell.id });
+    setItem("firstPlayerMove", !firstPlayerMove);
+  };
+  return (
+    <p className={styles.cell} onClick={handleClick}>
+      {cell.value}
+    </p>
+  );
 };
 
-const mapDispatchToProps = {
-  switchTurn
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cell);
+export default Cell;

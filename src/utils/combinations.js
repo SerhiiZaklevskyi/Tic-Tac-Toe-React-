@@ -11,8 +11,12 @@ const combinations = cells => {
   ];
   for (let i = 0; i < combination.length; i++) {
     const [a, b, c] = combination[i];
-    if (cells[a] && cells[a] === cells[b] && cells[a] === cells[c]) {
-      return cells[a];
+    if (
+      cells[a].value &&
+      cells[a].value === cells[b].value &&
+      cells[a].value === cells[c].value
+    ) {
+      return cells[a].value;
     }
   }
   return null;

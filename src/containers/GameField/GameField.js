@@ -2,20 +2,17 @@ import React from "react";
 import styles from "./GameField.module.css";
 import Cell from "./Cell/Cell";
 import { connect } from "react-redux";
-import { getCells } from "../../actions-reducers/field/fieldAction";
+import { getCells } from "../../actions/fieldAction";
 import combinations from "../../utils/combinations";
-import { store } from "../../store/configureStore";
 import {
-  changeCounterOne,
-  changeCounterTwo
-} from "../../actions-reducers/counter/counterAction";
-import { showWinner, resetGame } from "../../actions-reducers/field/fieldAction";
+  showWinner,
+  resetGame,
+  switchTurn,
+  chooseSymbol
+} from "../../actions/fieldAction";
+import { pick } from "ramda";
 
-class GameField extends React.Component {
-  constructor(props) {
-    super(props);
-    this.checkWinner = this.checkWinner.bind(this);
-  }
+export class GameField extends React.Component {
   componentDidMount() {
     const cells = JSON.parse(localStorage.getItem("cells"));
     cells && this.props.getCells(cells);
@@ -25,41 +22,59 @@ class GameField extends React.Component {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
-  playerOneWon() {
-    this.props.changeCounterOne(1);
-    this.props.showWinner(this.props.playerOne);
-    this.props.resetGame(this.props.firstPlayerX);
-    const state = store.getState();
-    this.setItem("firstPlayerMove", this.props.firstPlayerX);
-    this.setItem("counterOne", state.counter.counterOne);
-    localStorage.removeItem("cells");
-  }
-
-  playerTwoWon() {
-    this.props.changeCounterTwo(1);
-    this.props.showWinner(this.props.playerTwo);
-    this.props.resetGame(!this.props.firstPlayerX);
-    const state = store.getState();
-    this.setItem("firstPlayerMove", !this.props.firstPlayerX);
-    this.setItem("counterOne", state.counter.counterTwo);
-    localStorage.removeItem("cells");
-  }
-  checkWinner() {
-    const cells = store.getState().field.cells;
-    this.setItem("cells", cells);
-    if (combinations(cells) === "X") {
-      this.props.firstPlayerX ? this.playerOneWon() : this.playerTwoWon();
-    } else if (combinations(cells) === "O") {
-      this.props.firstPlayerX ? this.playerTwoWon() : this.playerOneWon();
+  componentDidUpdate(prevProps) {
+    if (this.props.cells !== prevProps.cells) {
+      this.checkWinner();
     }
   }
 
+  firstPlayerWon() {
+    this.props.showWinner(this.props.playerOneName);
+    this.props.changeCounterOne(1);
+    this.setItem("counterOne", this.props.counterOne + 1);
+  }
+
+  secondPlayerWon() {
+    this.props.showWinner(this.props.playerTwoName);
+    this.props.changeCounterTwo(1);
+    this.setItem("counterTwo", this.props.counterTwo + 1);
+  }
+
+  checkWinner() {
+    this.setItem("cells", this.props.cells);
+    const symbol = combinations(this.props.cells);
+    if (!symbol) return;
+    const { resetGame, firstPlayerX, playerSymbol } = this.props;
+    resetGame(!!firstPlayerX);
+    this.setItem("firstPlayerMove", !!firstPlayerX);
+    localStorage.removeItem("cells");
+    playerSymbol === symbol ? this.firstPlayerWon() : this.secondPlayerWon();
+  }
+
   render() {
+    const {
+      firstPlayerX,
+      firstPlayerMove,
+      switchTurn,
+      chooseSymbol,
+      symbolChosen,
+      cells,
+      playerSymbol
+    } = this.props;
     return (
       <div className={styles.gameField}>
         <div className={styles.cellsWrapper}>
-          {this.props.cells.map((cell, index) => (
-            <Cell key={index} id={index} checkWinner={this.checkWinner} />
+          {cells.map(cell => (
+            <Cell
+              key={cell.id}
+              cell={cell}
+              firstPlayerX={firstPlayerX}
+              firstPlayerMove={firstPlayerMove}
+              switchTurn={switchTurn}
+              chooseSymbol={chooseSymbol}
+              symbolChosen={symbolChosen}
+              playerSymbol={playerSymbol}
+            />
           ))}
         </div>
       </div>
@@ -67,20 +82,21 @@ class GameField extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    cells: state.field.cells,
-    firstPlayerX: state.field.firstPlayerX,
-    playerOne: state.name.playerOneName,
-    playerTwo: state.name.playerTwoName
-  };
-};
+const mapStateToProps = pick([
+  "firstPlayerX",
+  "firstPlayerMove",
+  "counterOne",
+  "counterTwo",
+  "symbolChosen",
+  "playerSymbol"
+]);
+
 const mapDispatchToProps = {
   getCells,
   resetGame,
-  changeCounterOne,
-  changeCounterTwo,
-  showWinner
+  showWinner,
+  switchTurn,
+  chooseSymbol
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameField);

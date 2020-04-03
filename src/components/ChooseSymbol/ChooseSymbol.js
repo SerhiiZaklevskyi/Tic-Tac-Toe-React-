@@ -1,19 +1,41 @@
 import React from "react";
 import styles from "./ChooseSymbol.module.css";
+import fireAction from "../../utils/action-util";
 
 class ChooseSymbol extends React.Component {
-  componentDidMount() {
-    const getItem = key => JSON.parse(localStorage.getItem(key));
-    const firstPlayerX = getItem("firstPlayerX");
-    const firstPlayerMove = getItem("firstPlayerMove");
-    firstPlayerX !== null &&
-      firstPlayerMove !== null &&
-      this.props.chooseSymbol(firstPlayerX, firstPlayerMove);
+  constructor(props) {
+    super(props);
+    this.items = [
+      {
+        actionName: this.props.firstPlayerChoseX,
+        itemName: "firstPlayerX"
+      },
+      {
+        actionName: this.props.choosePlayer,
+        itemName: "firstPlayerMove"
+      },
+      {
+        actionName: this.props.chooseSymbol,
+        itemName: "playerSymbol"
+      }
+    ];
   }
 
-  chooseSymbol = (firstPlayerX, fristPlayerMove) => {
-    this.props.chooseSymbol(firstPlayerX, fristPlayerMove);
-    localStorage.setItem("firstPlayerX", JSON.stringify(firstPlayerX));
+  componentDidMount() {
+    this.items.forEach(fireAction);
+  }
+
+  handleClick = (value, symbol) => () => {
+    const setItem = (key, item) =>
+      localStorage.setItem(key, JSON.stringify(item));
+    this.items.forEach(item => {
+      if (item.itemName !== "playerSymbol") {
+        setItem(item.itemName, value);
+        item.actionName(value);
+      }
+    });
+    this.props.chooseSymbol(symbol);
+    setItem("playerSymbol", symbol);
   };
   render() {
     return (
@@ -21,13 +43,13 @@ class ChooseSymbol extends React.Component {
         <p>Chose your symbol</p>
         <button
           className={styles.xButton}
-          onClick={() => this.chooseSymbol(true, true)}
+          onClick={this.handleClick(true, "X")}
         >
           X
         </button>
         <button
           className={styles.oButton}
-          onClick={() => this.chooseSymbol(false, false)}
+          onClick={this.handleClick(false, "O")}
         >
           O
         </button>
