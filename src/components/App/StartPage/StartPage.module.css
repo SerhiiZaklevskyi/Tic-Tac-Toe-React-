@@ -1,0 +1,19 @@
+.startGame {
+  padding: 1rem 3rem;
+  font-size: 1rem;
+  border-radius: 20px;
+  outline: none;
+  background-color: rgb(24, 87, 223);
+  color: white;
+  text-decoration: none;
+}
+
+.welcome {
+  font-size: 3rem;
+  color: blue;
+  padding-top: 10%;
+}
+
+.wrapper {
+  text-align: center;
+}
