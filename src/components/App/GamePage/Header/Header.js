@@ -55,13 +55,11 @@ export const Header = ({
 const mapStateToProps = ({
   symbol: { symbolChosen, playerSymbol },
   field: { winner }
-}) => {
-  return {
-    symbolChosen,
-    playerSymbol,
-    winner
-  };
-};
+}) => ({
+  symbolChosen,
+  playerSymbol,
+  winner
+});
 
 const mapDispatchToProps = {
   chooseSymbol,

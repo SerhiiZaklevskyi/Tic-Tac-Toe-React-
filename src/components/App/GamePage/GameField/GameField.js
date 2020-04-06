@@ -98,17 +98,15 @@ const mapStateToProps = ({
   field: { firstPlayerMove, firstPlayerX, cells },
   counter: { counterOne, counterTwo },
   symbol: { symbolChosen, playerSymbol }
-}) => {
-  return {
-    firstPlayerX,
-    firstPlayerMove,
-    counterOne,
-    counterTwo,
-    symbolChosen,
-    playerSymbol,
-    cells
-  };
-};
+}) => ({
+  firstPlayerX,
+  firstPlayerMove,
+  counterOne,
+  counterTwo,
+  symbolChosen,
+  playerSymbol,
+  cells
+});
 const mapDispatchToProps = {
   getCells,
   resetGame,

@@ -48,14 +48,12 @@ const GamePage = ({
 const mapStateToProps = ({
   counter: { counterOne, counterTwo },
   name: { playerOneName, playerTwoName }
-}) => {
-  return {
-    counterOne,
-    counterTwo,
-    playerOneName,
-    playerTwoName
-  };
-};
+}) => ({
+  counterOne,
+  counterTwo,
+  playerOneName,
+  playerTwoName
+});
 const mapDispatchToProps = {
   changeCounterOne,
   changeCounterTwo,
